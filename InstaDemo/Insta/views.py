@@ -4,6 +4,7 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from Insta.models import Post, Like, Comment, InstaUser, UserConnection
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -55,9 +56,18 @@ class UserDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
+    # current_user = self.request.user
+
     template_name = 'post_create.html'
+    # initial = {'author', request.user}
     fields = '__all__'
+    # fields = ['title','image']
     login_url = 'login'
+    # def get_initial(self):
+    #     state = get_object_or_404(Post, author=Post.author.id)
+    #     return {
+    #         'author':state,
+    #     }
 
 class PostUpdateView(UpdateView):
     model = Post
@@ -69,8 +79,6 @@ class UserUpdateView(UpdateView):
     model = InstaUser
     template_name = 'user_update.html'
     fields = ['email','profile_pic']
-    # fields = ['profile_pic']
-    # fields = '__all__'
     login_url = 'login'
 
 

@@ -6,7 +6,9 @@
 <form action="" method = "post" enctype = "multipart/form-data">
    {% csrf_token %}
    <p> Do you want to delete "{{post.title}}"? </p>
-   <button type = "submit">Delete</button>
+   <button type = "submit">Delete</button> 
 </form>
-
+<a href="{% url 'posts'%}">
+   <button color="black">Cancel</button> 
+</a> 
 {% endblock content %}

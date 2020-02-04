@@ -6,7 +6,7 @@
 
 <form action="" method = "post" enctype = "multipart/form-data">
    {% csrf_token %}
-   {{ form.as_p }}
+   <p><label for="id_title">Title:</label> <textarea name="title" cols="40" rows="1" id="id_title">{{object.title}}</textarea></p>
    <button type = "submit">Update</button>
 </form>
 
